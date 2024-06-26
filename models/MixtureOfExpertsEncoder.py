@@ -13,9 +13,9 @@ class MixtureOfExpertsSegmentationEncoder(nn.Module):
         self.conv_dw_1 = ConvDW(in_channels=1, out_channels=96, kernel_size=(3, 11), stride=(1, 2), padding=(1, 5))
         self.conv_wh_1 = ConvWH(in_channels=1, out_channels=96, kernel_size=(11, 11), stride=(2, 2), padding=(5, 5))
 
-        self.conv_dh_2 = ConvDH(in_channels=96, out_channels=256, kernel_size=(3, 11), stride=(1, 2), padding=(1, 5))
-        self.conv_dw_2 = ConvDW(in_channels=96, out_channels=256, kernel_size=(3, 11), stride=(1, 2), padding=(1, 5))
-        self.conv_wh_2 = ConvWH(in_channels=96, out_channels=256, kernel_size=(11, 11), stride=(2, 2), padding=(5, 5))
+        self.conv_dh_2 = ConvDH(in_channels=96, out_channels=256, kernel_size=(3, 11), stride=(1, 2), padding=(1, 4))
+        self.conv_dw_2 = ConvDW(in_channels=96, out_channels=256, kernel_size=(3, 11), stride=(1, 2), padding=(1, 4))
+        self.conv_wh_2 = ConvWH(in_channels=96, out_channels=256, kernel_size=(11, 11), stride=(2, 2), padding=(4, 4))
 
         self.conv_dh_3 = ConvDH(in_channels=256, out_channels=360, kernel_size=(3, 7), stride=(1, 1), padding=(1, 3))
         self.conv_dw_3 = ConvDW(in_channels=256, out_channels=360, kernel_size=(3, 7), stride=(1, 1), padding=(1, 3))
@@ -89,4 +89,4 @@ class MixtureOfExpertsSegmentationEncoder(nn.Module):
 
         out = self.add(outdh, outdw, outwh)
         out = self.sum(out)
-        return (out - out.min()) / (out.max() - out.min())
+        return out

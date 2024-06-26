@@ -5,7 +5,7 @@ class ControlSegmentationModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv_1 = nn.Conv2d(in_channels=3, out_channels=96, kernel_size=(11, 11), stride=(2, 2), padding=(5, 5))
-        self.conv_2 = nn.Conv2d(in_channels=96, out_channels=256, kernel_size=(11, 11), stride=(2, 2), padding=(5, 5))
+        self.conv_2 = nn.Conv2d(in_channels=96, out_channels=256, kernel_size=(11, 11), stride=(2, 2), padding=(4, 4))
         self.conv_3 = nn.Conv2d(in_channels=256, out_channels=360, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
         self.conv_4 = nn.Conv2d(in_channels=360, out_channels=512, kernel_size=(7, 7), stride=(1, 1), padding=(1, 1))
         self.conv_5 = nn.Conv2d(in_channels=512, out_channels=256, kernel_size=(3, 3), stride=(1, 1), padding=(0, 0))
@@ -32,4 +32,4 @@ class ControlSegmentationModel(nn.Module):
         # out = self.conv_7(out)
         out = self.pool(out)
 
-        return (out - out.min()) / (out.max() - out.min())
+        return out
